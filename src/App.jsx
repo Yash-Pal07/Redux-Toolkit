@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addExpense } from "./store/reducers/expenseSlice";
+import { addExpense, aysncremoveExpense } from "./store/actions/expenseAction";
 
 const App = () => {
   const [allUsers, setAllUsers] = useState([]);
@@ -20,10 +20,10 @@ const App = () => {
     }
 
     const newExpense = {
-      id: Number(id), 
-      expense: Number(expense), 
-      amount: Number(amount), 
-      category //we can write the catergory : category as only category
+      id: Number(id),
+      expense: Number(expense),
+      amount: Number(amount),
+      category, //we can write the catergory : category as only category
     };
 
     const updatedUsers = [...allUsers, newExpense];
@@ -82,7 +82,11 @@ const App = () => {
       <ul>
         {expenses.map((expense, index) => (
           <li key={index}>
-            {expense.id}: {expense.expense} - ${expense.amount} ({expense.category})
+            {expense.id}: {expense.expense} - ${expense.amount} (
+            {expense.category})
+            <button onClick={() => dispatch(aysncremoveExpense(index))}>
+              Remove
+            </button>
           </li>
         ))}
       </ul>

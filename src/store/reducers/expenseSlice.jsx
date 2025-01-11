@@ -10,9 +10,12 @@ const expenseSlice = createSlice({
     reducers: {
         addExpense: (state, action) => {
             state.data.push(action.payload);
+        },
+        removeExpense: (state, action) => {
+            state.data.splice(action.payload,1);
         }
     }
 });
 
-export const { addExpense } = expenseSlice.actions;
+export const { addExpense,removeExpense } = expenseSlice.actions;
 export default expenseSlice.reducer;
